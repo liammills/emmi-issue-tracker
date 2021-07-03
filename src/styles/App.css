@@ -1,0 +1,61 @@
+/* Vars */
+:root {
+  --orange:#E87704;
+  --gray: #F0F0F0;
+  --dark-blue: #252734;
+}
+
+/* Styles */
+body {
+  transition-timing-function: ease-in;
+}
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  background-color: var(--gray);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.Button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  background-color: var(--orange);
+  padding: 8px 20px;
+  border-radius: 10px;
+  border-width: 1px;
+  color: white;
+
+}
+Button:hover {
+  background-color: transparent;
+  border-color: var(--orange);
+  color: var(--orange)
+}
+
+.Title {
+  /* align-items: flex-start; */
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 54px;
+  line-height: 81px;
+  /* identical to box height */
+
+  color: var(--dark-blue);
+}
+
+.stretch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  
+  /* class="flex items-center mb-3" */
+}
