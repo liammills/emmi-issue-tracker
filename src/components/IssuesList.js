@@ -1,66 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/App.css';
+import Issue from './Issue';
 
 export default function IssuesList() {
-
+    const [issues, setIssues] = useState([]);
+    const getData=()=>{
+        fetch('issues.json'
+        ,{
+            headers : { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+            }
+        }
+        )
+            .then(function(response){
+            // console.log(response)
+            return response.json();
+            })
+            .then(function(myJson) {
+            // console.log(myJson["issues"]);
+            setIssues(myJson["issues"])
+            });
+        }
+        useEffect(()=>{
+        getData()
+    },[])
+    // console.log(issues);
     return (
-        <section class="text-gray-600 body-font">
-            <div class="container px-5 py-24 mx-auto items-start">
-                <div class="flex flex-col w-full mb-20">
+        <section className="text-gray-600 body-font mb-40">
+            <div className="container px-5 py-24 mx-auto items-start">
+                <div className="flex flex-col w-full mb-20">
                     <h1 className="Title">Issue Tracker</h1>
                 </div>
-                <div class="flex flex-wrap -m-4">
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                    <div className="stretch">
-                        <h2 class="text-gray-900 text-lg title-font font-medium">Issue #1</h2>
-                        <p>Open</p>
-                    </div>
-                    <div class="flex-grow">
-                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                        </a>
-                    </div>
-                    </div>
-                </div>
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                    <div class="flex items-center mb-3">
-                        <h2 class="text-gray-900 text-lg title-font font-medium">The Catalyzer</h2>
-                    </div>
-                    <div class="flex-grow">
-                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                        </a>
-                    </div>
-                    </div>
-                </div>
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                    <div class="flex items-center mb-3">
-                        <h2 class="text-gray-900 text-lg title-font font-medium">Neptune</h2>
-                    </div>
-                    <div class="flex-grow">
-                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                        </a>
-                    </div>
-                    </div>
-                </div>
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                    <div class="flex items-center mb-3">
-                        <h2 class="text-gray-900 text-lg title-font font-medium">Neptune</h2>
-                    </div>
-                    <div class="flex-grow">
-                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                        </a>
-                    </div>
-                    </div>
-                </div>
+                <div className="flex flex-wrap tm-4">
+                
+                {issues && issues.length > 0 && issues.map((issue,key) => {
+                    return (
+                        <Issue issue={issue} key={key} />
+                    )
+                })}
+
                 </div>
             </div>
             </section>
     )
 }
+

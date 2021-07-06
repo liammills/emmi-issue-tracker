@@ -6,7 +6,9 @@
 }
 
 /* Styles */
-body {
+
+* {
+  transition: all 0.2s;
   transition-timing-function: ease-in;
 }
 
@@ -23,30 +25,89 @@ body {
   pointer-events: none;
 }
 
-.Button {
+.form-div {
+  /* background-color: aqua; */
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  padding: 20px 40px;
+  margin-right: auto;
+  align-items: center;
+}
+@media only screen and (max-width: 780px) {
+.form-div {
+  width: 100%;
+}
+}
+input, textarea {
+  /* display: block; */
+  background-color: white;
+  color: var(--gray);
+  padding-left: 10px;
+  border: transparent solid 1px;
+  border-radius: 6px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+.form-bottom {
+  margin-bottom: 80px;
+}
+.form-box {
+  width:100%;
+  display: block;
+  color: var(--dark-blue);
+  padding: 3px 10px;
+  /* margin-bottom: 20px; */
+}
+input[type=text]:focus {
+  border-color: var(--orange);
+}
+
+/* Buttons */
+button {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  background-color: var(--orange);
-  padding: 8px 20px;
   border-radius: 10px;
   border-width: 1px;
-  color: white;
-
+  border-color: transparent;
 }
-Button:hover {
+button:hover {
   background-color: transparent;
   border-color: var(--orange);
   color: var(--orange)
 }
+.Button {
+  background-color: var(--orange);
+  border-color: transparent;
+  padding: 6px 20px;
+  min-width: 120px;
+  color: white;
+}
+.ClosedIssueButton {
+  background-color: transparent;
+  border-color: white;
+  padding: 5px 16px;
+  min-width: 100px;
+  border-color: white;
+}
+.OpenIssueButton {
+  background-color: transparent;
+  border-color: var(--dark-blue);
+  padding: 5px 16px;
+  min-width: 100px;
+  color: var(--dark-blue);
+}
+.bottom {
+  margin-top: 60px;
+}
 
 .Title {
-  /* align-items: flex-start; */
   font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 54px;
   line-height: 81px;
-  /* identical to box height */
 
   color: var(--dark-blue);
 }
@@ -55,7 +116,4 @@ Button:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
-  
-  /* class="flex items-center mb-3" */
 }
