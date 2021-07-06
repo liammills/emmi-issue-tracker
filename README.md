@@ -11,3 +11,4 @@ Alternatively, you can check it out at [https://goofy-swirles-efa8f3.netlify.app
 * Hacked together with mix of Tailwind & CSS
 * For most part, follows Emmi's style guidelines RE colours, fonts
 * Does not have backend at all i.e. updates and additions are not carried between pages / sessions
+* To add/remove/modify the issues, this will need to be done manually in public/issues.json
