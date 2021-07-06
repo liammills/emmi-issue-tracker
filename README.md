@@ -2,7 +2,7 @@
 
 Author: Liam Mills
 
-To start, run ```yarn start``` and open [http://localhost:3000](http://localhost:3000).
+To start, run ```yarn install``` then ```yarn start``` and open [http://localhost:3000](http://localhost:3000).
 
 ## Some notes
 * Quick started with create-react-app.
