@@ -1,4 +1,4 @@
-# Emmi Issuer Tracker
+# Emmi Issue Tracker
 
 Author: Liam Mills
 
