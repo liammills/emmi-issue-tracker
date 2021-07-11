@@ -42,7 +42,6 @@ export default function IssuesList() {
                 <div className="flex flex-wrap tm-4">
                 {error && <p>{error}</p>}
                 {isLoading && <p>Loading...</p>}
-                {/* {console.log(issues)} */}
                 {issues && issues.length > 0 ? issues.map((issue,key) => {
                     return (
                         <Issue issue={issue} key={key} />
