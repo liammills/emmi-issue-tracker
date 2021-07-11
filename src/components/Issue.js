@@ -4,6 +4,15 @@ import React, { useState } from 'react';
 export default function Issue(issue) {
     const [closed, setClosed] = useState(issue.issue.closed);
 
+    const handleClick = (close) => {
+        setClosed(close);
+        fetch('http://localhost:8000/issues/'+issue.issue.id, {
+            method: "PATCH",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({closed:close})
+        }).then(res => console.log(res))
+    }
+
     var openClosedColor = closed ? "flex rounded-lg border-4 border-transparent h-full p-8 flex-col bg-gray-800 text-gray-100 hover:border-yellow-500" : "flex rounded-lg border-4 border-transparent h-full p-8 flex-col bg-gray-100 hover:border-yellow-500";
 
     return (
@@ -17,8 +26,8 @@ export default function Issue(issue) {
                 <p className="h-full leading-relaxed text-base mb-8">{issue.issue.description}</p>
                 <div>
                     {closed
-                    ? <button className="ClosedIssueButton" onClick={() => {setClosed(!closed)}}>Open</button>
-                    : <button className="OpenIssueButton" onClick={() => {setClosed(!closed)}}>Close</button>
+                    ? <button className="ClosedIssueButton" onClick={() => handleClick(false)}>Open</button>
+                    : <button className="OpenIssueButton" onClick={() => handleClick(true)}>Close</button>
                     }
                 </div>
             </div>

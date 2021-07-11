@@ -2,12 +2,24 @@ import React, { useState } from 'react';
 import '../styles/App.css';
 
 export default function IssueForm() {
-    let [name, setName] = useState("");
-    let [date, setDate] = useState("");
-    let [des, setDes] = useState("");
-    let [showForm, setShowForm] = useState(true)
+    const [name, setName] = useState("");
+    const [date, setDate] = useState("");
+    const [des, setDes] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [showForm, setShowForm] = useState(true);
 
     const handleSubmit = event => {
+        event.preventDefault();
+        const issue = { name, closed: false, date, description: des };
+        fetch('http://localhost:8000/issues', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(issue)
+        }).then(() => {
+            console.log("new issue added")
+            setIsLoading(true)
+        })
+
         setShowForm(false);
     }
   
@@ -21,7 +33,7 @@ export default function IssueForm() {
                 {/* redo in css not tailwind */}
                 {showForm ? <div className="form-div">
                     <form className="w-full" id="issueInputForm" onSubmit={handleSubmit}>
-                        <label className="font-medium text-m block">
+                        <label className="font-medium text-m block text-left">
                         Name *
                         </label>
                         <input
@@ -33,10 +45,9 @@ export default function IssueForm() {
                         value={name}
                         onChange={event => {
                             setName(event.target.value);
-                            // console.log(name);
                         }}
                         />
-                        <label className="font-medium text-m block">
+                        <label className="font-medium text-m block text-left">
                         When was this created? *
                         </label>
                         <input
@@ -47,10 +58,9 @@ export default function IssueForm() {
                         value={date}
                         onChange={event => {
                             setDate(event.target.value);
-                            // console.log(date);
                         }}
                         />
-                        <label className="font-medium text-m block">
+                        <label className="font-medium text-m block text-left">
                         Description *
                         </label>
                         <textarea
@@ -62,12 +72,14 @@ export default function IssueForm() {
                         value={des}
                         onChange={event => {
                             setDes(event.target.value);
-                            // console.log(des);
                         }}
                         />
-                    <button className="Button bottom" type="submit">
+                    {!isLoading && <button className="Button bottom" type="submit">
                         Submit Issue
-                    </button>
+                    </button>}
+                    {isLoading && <button disabled className="Button bottom" type="submit">
+                        Submitting Issue...
+                    </button>}
                     </form>
                 </div>
                 : 
